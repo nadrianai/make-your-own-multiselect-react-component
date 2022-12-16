@@ -64,7 +64,7 @@
 }
 .option{
     cursor: pointer;
-    opacity: 0.5;
+    opacity: 0.3;
 }
 .option.highlighted{
     opacity: 0.7!important;
