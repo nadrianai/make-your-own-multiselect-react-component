@@ -1,0 +1,74 @@
+.container {
+    position: relative;
+    background-color: #f7f7f7;
+    width: 40em;
+    min-height: 1.5em;
+    border: 0.05em solid rgb(219, 218, 218);
+    display: flex;
+    align-items: center;
+    gap: .5em;
+    padding: .5em;
+    border-radius: .25em;
+    outline: none;
+}
+.container:focus{
+    border: 1px solid rgb(21, 196, 239);
+}
+.option{
+    list-style-type: none;
+}
+.value {
+    flex-grow: 1;
+}
+.clear-btn{
+    background: none;
+    color: #777;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 0;
+    font-size:1.5em ;
+}
+.clear-btn:focus, .clear-btn:hover {
+    color: #333;
+}
+.divider{
+    background-color: rgb(219, 218, 218);
+    width: 0.05em;
+    align-self: stretch;
+}
+.caret{
+    border: .25em solid transparent;
+    border-top-color: #777;
+    translate: 0 25%;
+    cursor: pointer;
+}
+
+.options{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: none;
+    overflow-y: auto;
+    min-height: 15em;
+    border: .05em solid rgb(219, 218, 218);
+    border-radius: .25em;
+    width: 100%;
+    position: absolute;
+    top: calc(100% + .25em);
+    left:0;
+    background-color: #f7f7f7;
+}
+.options.show{
+    display: block;
+}
+.option{
+    cursor: pointer;
+    opacity: 0.5;
+}
+.option.highlighted{
+    opacity: 0.7!important;
+}
+.option.selected{
+    opacity: 1!important;
+}
