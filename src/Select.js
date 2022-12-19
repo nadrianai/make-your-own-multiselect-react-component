@@ -3,22 +3,27 @@ import styles from './select.module.css'
 
 const Select = ({options, value, onChange}) => {
     const [isOpen, setIsOpen] = useState(false)
-
+    const [highlightedIndex, setHighlightedIndex] = useState(0)
+    const [colors, setColors] = useState([])
+    useEffect(()=>{
+        setColors(options)
+    },[])
     const clearOptions = () =>{
         onChange(undefined)
     }
 
     const selectOption = (option) =>{
-        onChange(option)
+       if(option !== value ) onChange(option)
     }
 
     const isOptionSelected = (option) => {
         return option  === value 
 
     }
-    const setHighlightedIndex = () => {
-    
-    }
+ 
+    useEffect(()=>{
+        if(isOpen) setHighlightedIndex(0)
+    },[isOpen])
 
     // useEffect(()=>{
     //     console.log(value)
@@ -46,7 +51,7 @@ const Select = ({options, value, onChange}) => {
             <div className={styles.options}></div>
             <ul className={`${styles.options} ${ isOpen ? styles.show : ""}`}>
                 {
-                    options.map((option, index) => (
+                    colors.map((option, index) => (
                         <li 
                             onClick={e => {
                                 e.stopPropagation()
@@ -54,7 +59,10 @@ const Select = ({options, value, onChange}) => {
                                 setIsOpen(false)
                             }}
                             onMouseEnter = {() => setHighlightedIndex(index)}
-                            className={`${styles.option} ${isOptionSelected(option) ?  styles.selected : "" }`} 
+                            className={`${styles.option} 
+                            ${isOptionSelected(option) ?  styles.selected : "" }
+                            ${index === highlightedIndex ?  styles.highlighted : ""}
+                            `} 
                             
                             key={index}>
                             <span 

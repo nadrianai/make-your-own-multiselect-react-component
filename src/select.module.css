@@ -64,11 +64,16 @@
 }
 .option{
     cursor: pointer;
-    opacity: 0.3;
-}
-.option.highlighted{
-    opacity: 0.7!important;
+    opacity: 0.5;
+    transition: 0.2s ease-in-out;
+
 }
 .option.selected{
     opacity: 1!important;
+    transition: 0.2s ease-in-out;
+
+}
+.option.highlighted{
+    opacity: 1!important;
+    transition: 0.2s ease-in-out;
 }
