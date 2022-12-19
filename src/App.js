@@ -46,8 +46,11 @@ function App() {
 
   return (
     <div className="container">
+      <h6 className='mb-5'>Multi-Select React Component</h6>
       <Select options = {options} value={value1} onChange = {option => setValue1(option)} multiple={true}/>
+      
       <br />
+      <h6 className='mb-5'>Simple-Select React Component</h6>
       <Select options={options} value={value2} onChange={o => setValue2(o)} />
     </div>
   );

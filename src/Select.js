@@ -38,7 +38,7 @@ const Select = ({multiple, options, value, onChange}) => {
     // },[onChange])
   return (
     <div className='mt-5'>
-        <h6 className='mb-5'>Multi-Select React Component</h6>
+        
         <div 
             onClick = {() => setIsOpen(prev=> !prev)} 
             className={styles.container} 
