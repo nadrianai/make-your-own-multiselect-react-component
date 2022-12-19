@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import styles from './select.module.css'
 
-const Select = ({options, value, onChange}) => {
+const Select = ({multiple, options, value, onChange}) => {
     const [isOpen, setIsOpen] = useState(false)
     const [highlightedIndex, setHighlightedIndex] = useState(0)
     const [colors, setColors] = useState([])
@@ -9,15 +9,23 @@ const Select = ({options, value, onChange}) => {
         setColors(options)
     },[])
     const clearOptions = () =>{
-        onChange(undefined)
+        multiple ? onChange([]) : onChange(undefined)
     }
 
     const selectOption = (option) =>{
-       if(option !== value ) onChange(option)
+        if(multiple){
+            if(value.includes(option)){
+                onChange(value.filter(o => o !== option))
+            }else{
+                onChange([...value, option])
+            }
+        }else{
+            if(option !== value ) onChange(option)
+        }
     }
 
     const isOptionSelected = (option) => {
-        return option  === value 
+        return multiple? value.includes(option) : option  === value 
 
     }
  
@@ -37,7 +45,26 @@ const Select = ({options, value, onChange}) => {
             tabIndex={0}
             onBlur = {()=> setIsOpen(false)} 
             >
-            <span className={styles.value}>Select summer colours ...</span>
+             <span className={styles.value}>
+                {multiple
+                ? value.map(v => (
+                    <button
+                        style={{
+                           "backgroundColor":`${v.value}` 
+                        }}
+                        key={v.value}
+                        onClick={e => {
+                        e.stopPropagation()
+                        selectOption(v)
+                        }}
+                        className={styles["option-badge"]}
+                    >
+                        {v.label}
+                        <span className={styles["remove-btn"]}>&times;</span>
+                    </button>
+                    ))
+                : value?.label}
+            </span>
             <button 
                 className={styles["clear-btn"]}
                 onClick = { e => {
@@ -56,7 +83,7 @@ const Select = ({options, value, onChange}) => {
                             onClick={e => {
                                 e.stopPropagation()
                                 selectOption(option)
-                                setIsOpen(false)
+                                // setIsOpen(false)
                             }}
                             onMouseEnter = {() => setHighlightedIndex(index)}
                             className={`${styles.option} 

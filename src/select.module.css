@@ -58,6 +58,7 @@
     top: calc(100% + .25em);
     left:0;
     background-color: #f7f7f7;
+    z-index: 10;
 }
 .options.show{
     display: block;
@@ -77,3 +78,41 @@
     opacity: 1!important;
     transition: 0.2s ease-in-out;
 }
+.option-badge {
+    /* display: flex; */
+    border: .05em solid #777;
+    border-radius: .25em;
+    padding: .15em .25em;
+    gap: .25em;
+    cursor: pointer;
+    background: none;
+    outline: none;
+    margin-right: 5px;
+    transition: 0.2s ease-in-out;
+
+  }
+  
+  .option-badge:hover,
+  .option-badge:focus {
+    background-color: lightcoral!important;
+    border-color: hsl(0, 100%, 50%);
+    color:hsl(0, 100%, 50%) ;
+    transition: 0.2s ease-in-out;
+
+  }
+  
+  .option-badge:hover > .remove-btn,
+  .option-badge:focus > .remove-btn{
+    color: hsl(0, 100%, 50%);
+    transition: 0.2s ease-in-out;
+
+  }
+  
+  .option-badge > .remove-btn {
+    font-size: 1.25em;
+    color: white;
+    margin-left: 5px;
+    transition: 0.2s ease-in-out;
+
+
+  }
